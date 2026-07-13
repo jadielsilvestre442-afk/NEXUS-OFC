@@ -23,7 +23,7 @@
             padding: 25px;
             border-radius: 14px;
             box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
-            max-width: 460px;
+            max-width: 480px;
             width: 100%;
             border: 1px solid #222;
             box-sizing: border-box;
@@ -156,7 +156,7 @@
         .chat-box {
             background-color: #0d0d0d;
             border: 1px solid #222;
-            height: 120px;
+            height: 160px;
             border-radius: 8px;
             padding: 10px;
             overflow-y: auto;
@@ -190,7 +190,6 @@
             margin-top: 12px;
         }
 
-        /* Configuración Admin */
         .admin-link {
             background: none;
             border: none;
@@ -201,582 +200,160 @@
             text-decoration: underline;
         }
 
-        .admin-box {
-            background-color: #1a0808;
-            border: 1px solid #3a1515;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: left;
-            margin-bottom: 15px;
-        }
-
-        .admin-box label {
-            font-size: 13px;
-            color: #aaa;
-            display: block;
-            margin-bottom: 4px;
-        }
-        
-        .admin-box input {
-            padding: 8px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .btn-eliminar {
-            background-color: #551111;
-            font-size: 11px;
-            padding: 4px 8px;
-            width: auto;
-            display: inline-block;
-            margin-top: 5px;
-            border-radius: 4px;
-        }
-
         .error {
             color: #ff3333;
             font-size: 13px;
             margin-top: 10px;
         }
-        
-        .scroller-admin {
-            max-height: 450px;
+
+        /* Estilos de la Sección IA */
+        .ia-section {
+            background-color: #0a0a10;
+            border: 1px dashed #3b32ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .ia-box {
+            background-color: #050508;
+            border: 1px solid #1a1a2e;
+            height: 100px;
+            border-radius: 6px;
+            padding: 8px;
             overflow-y: auto;
-            padding-right: 5px;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: #d1d5db;
         }
 
-        .separador-seccion {
-            border-bottom: 1px dashed #444;
-            margin: 15px 0;
-            padding-bottom: 5px;
-            font-weight: bold;
-            color: #ffaa00;
-            font-size: 14px;
+        /* Inyector Virtual Visual */
+        .injector-section {
+            background-color: #120808;
+            border: 1px solid #ff3333;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
         }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- MARCA CONSTANTE -->
-        <div class="titulo-marca">NEXUS OFC 🌹😼💸</div>
-
-        <!-- PANTALLA 1: MENU PRINCIPAL / LOG IN CLIENTES -->
-        <div id="pantalla-key">
-            <button onclick="entrarApartadoLibre()" style="background: linear-gradient(45deg, #2a5298, #1e3c72); margin-bottom: 25px; padding: 15px; font-size: 18px;">🔓 ENTRAR AL APARTADO GRATIS</button>
-            
-            <hr style="border: 0; border-top: 1px solid #222; margin-bottom: 20px;">
-            
-            <h2>🔒 ACCESO APARTADO VIP</h2>
-            <input type="text" id="input-key" placeholder="Introduce la Clave VIP...">
-            <button onclick="verificarKey()">Validar Key VIP</button>
-            <p id="mensaje-error" class="error"></p>
-            
-            <button class="admin-link" onclick="irALoginAdmin()">[ Panel Administrador ]</button>
-        </div>
-
-        <!-- PANTALLA 2: LOG IN DE ADMIN -->
-        <div id="login-admin">
-            <h2>LOGIN CONTROL</h2>
-            <input type="password" id="pass-admin" placeholder="Contraseña Admin...">
-            <button onclick="verificarAdmin()">Acceder al Panel</button>
-            <button onclick="cancelarAdmin()" class="btn-regresar">Regresar</button>
-            <p id="error-admin-login" class="error"></p>
-        </div>
-
-        <!-- PANTALLA 3: APARTADO VIP (CON KEY NEXUS2026) -->
-        <div id="apartado-vip">
-            <h2>💎 APARTADO VIP 💎</h2>
-            
-            <!-- Lista Dinámica VIP -->
-            <div id="lista-productos-vip"></div>
-
-            <!-- CHAT GLOBAL -->
-            <div class="chat-section">
-                <h3 style="font-size:15px; text-align:left; margin-bottom:8px;">💬 Chat de la Comunidad</h3>
-                <div class="chat-box" id="chat-box">
-                    <div class="chat-msg"><b>Admin_Nexus:</b> Bienvenidos al chat VIP, dejen sus pedidos. <span>12:00</span></div>
-                    <div class="chat-msg"><b>User_VIP:</b> El aibot cabeza pega todo rojo directo 🎯 <span>12:02</span></div>
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" id="chat-input" placeholder="Escribe algo...">
-                    <button onclick="enviarMensaje()">Enviar</button>
-                </div>
-                
-                <a href="https://wa.me/18295225281?text=hola%20Nexus%20quiero%20entrar%20al%20grupo" target="_blank" class="btn-grupo">🌐 Entrar al Grupo Oficial</a>
-            </div>
-
-            <button onclick="regresarAlInicio()" class="btn-regresar">Volver al Inicio</button>
-        </div>
-
-        <!-- PANTALLA 4: APARTADO LIBRE (SIN KEY) -->
-        <div id="apartado-libre">
-            <h2>📢 CONTENIDO GRATUITO</h2>
-            <p style="color:#aaa; font-size:13px; margin-bottom:15px;">Disfruta de estas configuraciones públicas:</p>
-            
-            <!-- Lista Dinámica Gratuita -->
-            <div id="lista-productos-libre"></div>
-
-            <a href="https://wa.me/18295225281?text=hola%20Nexus%20quiero%20comprar%20el%20pase%20VIP" target="_blank" class="btn-grupo" style="background: linear-gradient(45deg, #ff3333, #aa0000);">🔥 ¡Adquirir Acceso VIP Completo!</a>
-
-            <button onclick="regresarAlInicio()" class="btn-regresar">Volver al Inicio</button>
-        </div>
-
-        <!-- PANTALLA 5: PANEL DE CONTROL GENERAL (ADMIN) -->
-        <div id="panel-admin">
-            <h2>🛠️ PANEL CONTROL (NEXUS)</h2>
-            
-            <div class="scroller-admin">
-                <!-- SECCIÓN CLAVE VIP -->
-                <div class="admin-box">
-                    <p style="margin: 0 0 10px 0; font-size: 14px; color: #ff5555; font-weight: bold;">🔑 Clave del Apartado VIP:</p>
-                    <input type="text" id="nueva-key-web">
-                    <button onclick="guardarNuevaKey()" style="background-color:#2a5298;">Actualizar Clave VIP</button>
-                </div>
-
-                <!-- SECCIÓN CONTROL VIP -->
-                <div class="admin-box">
-                    <div class="separador-seccion">💎 GESTIONAR APARTADO VIP</div>
-                    
-                    <p style="margin: 0 0 10px 0; font-size: 13px; color: #ffaa00;">Precios de Productos VIP actuales:</p>
-                    <div id="inputs-precios-vip"></div>
-                    <button onclick="actualizarPreciosVIP()" style="background-color:#25d366; margin-bottom:15px;">Guardar Cambios de Precio</button>
-
-                    <p style="margin: 0 0 5px 0; font-size: 13px; color: #ffaa00;">Agregar más cosas a VIP:</p>
-                    <label>Nombre:</label>
-                    <input type="text" id="nuevo-vip-nombre" placeholder="Ej: Regedit Extremo 2026">
-                    <label>Precio / Nota:</label>
-                    <input type="text" id="nuevo-vip-precio" placeholder="Ej: 10 Dólares">
-                    <button onclick="crearItemAdmin('vip')" style="background-color:#ff3333;">Añadir al Menú VIP</button>
-                </div>
-
-                <!-- SECCIÓN CONTROL APARTADO LIBRE -->
-                <div class="admin-box">
-                    <div class="separador-seccion">🔓 GESTIONAR CONTENIDO GRATIS</div>
-                    
-                    <p style="margin: 0 0 10px 0; font-size: 13px; color: #00ffaa;">Agregar a la sección Pública (Sensibilidad, HUD, etc):</p>
-                    
-                    <label>Tipo de Contenido:</label>
-                    <select id="nuevo-libre-tipo">
-                        <option value="🎯 Sensibilidad">🎯 Sensibilidad</option>
-                        <option value="📱 Configuración HUD">📱 Configuración HUD</option>
-                        <option value="🎁 Regalo Gratis">🎁 Regalo Gratis</option>
-                        <option value="📦 Contenido Manual">📦 Otro Manual</option>
-                    </select>
-
-                    <label>Título / Nombre:</label>
-                    <input type="text" id="nuevo-libre-nombre" placeholder="Ej: Sensi Todo Rojo Xiaomi">
-                    
-                    <label>Detalles / Valores:</label>
-                    <input type="text" id="nuevo-libre-detalle" placeholder="Ej: General 98%, Botón 45%">
-                    
-                    <button onclick="crearItemAdmin('libre')" style="background-color:#25d366;">Publicar en sección Gratis</button>
-
-                    <div style="margin-top:15px;">
-                        <p style="font-size:12px; color:#aaa; margin-bottom:5px;">Elementos actuales (Para borrar):</p>
-                        <div id="lista-borrado-libre"></div>
-                    </div>
-                </div>
-            </div>
-
-            <button onclick="cerrarPanelAdmin()" style="background:#333; margin-top:15px;">Cerrar Sesión Admin</button>
-        </div>
-
-    </div>
-
-    <script>
-        // --- BASE DE DATOS INICIAL ---
-        let KEY_CLIENTE = "NEXUS2026"; 
-        const KEY_ADMIN = "NEXUSADMIN"; 
-
-        // Lista Inicial VIP
-        let productosVIP = [
-            { id: 0, nombre: "Modificaciones VIP", precio: "5 Dólares" },
-            { id: 1, nombre: "Panel VIP", precio: "3 Dólares" },
-            { id: 2, nombre: "Drip Client", precio: "7 Dólares" },
-            { id: 3, nombre: "AIBOT PECHO", precio: "3 Dólares" },
-            { id: 4, nombre: "AIBOT CABEZA", precio: "3 Dólares" }
-        ];
-
-        // Lista Inicial Gratis / Libre
-        let contenidoLibre = [
-            { id: 0, tipo: "🎯 Sensibilidad", nombre: "Sensi Base Android/iOS", detalle: "General: 95% | Mira de Punto Rojo: 100% | Botón: 51%" },
-            { id: 1, tipo: "📱 Configuración HUD", nombre: "HUD 3 Dedos Estándar", detalle: "Botón de disparo Izquierdo arriba (Tamaño: 60%)" }
-        ];
-
-        window.onload = function() {
-            renderizarTodo();
-        };
-
-        function renderizarTodo() {
-            renderizarVIP();
-            renderizarLibre();
-        }
-
-        // Renderizar Vista Cliente VIP
-        function renderizarVIP() {
-            const contenedor = document.getElementById('lista-productos-vip');
-            contenedor.innerHTML = "";
-            productosVIP.forEach(prod => {
-                contenedor.innerHTML += `
-                    <div class="card-item">
-                        <div class="card-info">
-                            <h3>${prod.nombre}</h3>
-                            <p>${prod.precio}</p>
-                        </div>
-                        <a href="https://wa.me/18295225281?text=hola%20Nexus%20quiero%20comprar%20${encodeURIComponent(prod.nombre)}" target="_blank" class="btn-elegir">Elegir</a>
-                    </div>
-                `;
-            });
-        }
-
-        // Renderizar Vista Cliente Libre
-        function renderizarLibre() {
-            const contenedor = document.getElementById('lista-productos-libre');
-            contenedor.innerHTML = "";
-            contenidoLibre.forEach(item => {
-                contenedor.innerHTML += `
-                    <div class="card-item" style="border-left: 3px solid #2a5298;">
-                        <div class="card-info">
-                            <span style="font-size:11px; background:#222; padding:2px 6px; border-radius:4px; color:#00ffaa;">${item.tipo}</span>
-                            <h3 style="margin-top:5px;">${item.nombre}</h3>
-                            <p style="color:#ccc; font-weight:normal; font-size:13px;">${item.detalle}</p>
-                        </div>
-                        <a href="https://wa.me/18295225281?text=hola%20Nexus%20vi%20tu%20configuracion%20gratis%20de%20${encodeURIComponent(item.nombre)}" target="_blank" class="btn-elegir" style="background-color:#2a5298;">Reclamar</a>
-                    </div>
-                `;
-            });
-        }
-
-        // Generar herramientas en el menú de administrador
-        function cargarHerramientasAdmin() {
-            // Inputs de precio VIP
-            const contenedorInputs = document.getElementById('inputs-precios-vip');
-            contenedorInputs.innerHTML = "";
-            productosVIP.forEach(prod => {
-                contenedorInputs.innerHTML += `
-                    <label style="font-size:12px;">${prod.nombre}</label>
-                    <input type="text" id="edit-vip-precio-${prod.id}" value="${prod.precio}">
-                    <button onclick="eliminarItem('vip', ${prod.id})" class="btn-eliminar">Eliminar item</button>
-                    <div style="margin-bottom:10px;"></div>
-                `;
-            });
-
-            // Lista de elementos libres para borrar
-            const contenedorBorradoLibre = document.getElementById('lista-borrado-libre');
-            contenedorBorradoLibre.innerHTML = "";
-            contenidoLibre.forEach(item => {
-                contenedorBorradoLibre.innerHTML += `
-                    <div style="font-size:12px; color:#ccc; margin-bottom:5px; background:#2a0a0a; padding:5px; border-radius:4px;">
-                        [${item.tipo}] ${item.nombre} 
-                        <br><button onclick="eliminarItem('libre', ${item.id})" class="btn-eliminar" style="background-color:#990000; padding:2px 5px;">Borrar</button>
-                    </div>
-                `;
-            });
-        }
-
-        // Navegación de Ventanas
-        function entrarApartadoLibre() {
-            document.getElementById('pantalla-key').style.display = 'none';
-            document.getElementById('apartado-libre').style.display = 'block';
-        }
-
-        function verificarKey() {
-            const entrada = document.getElementById('input-key').value.trim();
-            if (entrada === KEY_CLIENTE) {
-                document.getElementById('pantalla-key').style.display = 'none';
-                document.getElementById('apartado-vip').style.display = 'block';
-            } else {
-                document.getElementById('mensaje-error').innerText = "Key no válida o vencida.";
-            }
-        }
-
-        function regresarAlInicio() {
-            document.getElementById('apartado-vip').style.display = 'none';
-            document.getElementById('apartado-libre').style.display = 'none';
-            document.getElementById('pantalla-key').style.display = 'block';
-            document.getElementById('input-key').value = "";
-            document.getElementById('mensaje-error').innerText = "";
-        }
-
-        // Control Panel Admin
-        function irALoginAdmin() {
-            document.getElementById('pantalla-key').style.display = 'none';
-            document.getElementById('login-admin').style.display = 'block';
-        }
-        function cancelarAdmin() {
-            document.getElementById('login-admin').style.display = 'none';
-            document.getElementById('pantalla-key').style.display = 'block';
-        }
-        
-        function verificarAdmin() {
-            const p = document.getElementById('pass-admin').value.trim();
-            if(p === KEY_ADMIN) {
-                document.getElementById('login-admin').style.display = 'none';
-                document.getElementById('panel-admin').style.display = 'block';
-                document.getElementById('nueva-key-web').value = KEY_CLIENTE;
-                cargarHerramientasAdmin();
-            } else {
-                document.getElementById('error-admin-login').innerText = "Acceso Incorrecto.";
-            }
-        }
-
-        function guardarNuevaKey() {
-            const n = document.getElementById<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS OFC - MULTI PANEL</title>
-    <style>
-        /* Diseño Oscuro Premium */
-        body {
-            background-color: #050505;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: #111111;
-            padding: 25px;
-            border-radius: 14px;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
-            max-width: 460px;
+        .progress-bar-bg {
+            background-color: #222;
             width: 100%;
-            border: 1px solid #222;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .titulo-marca {
-            font-size: 26px;
-            font-weight: bold;
-            color: #ff3333;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
-        }
-
-        h2 {
-            font-size: 18px;
-            color: #ccc;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Campos de Texto e Inputs */
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            border-radius: 8px;
-            background-color: #1a1a1a;
-            color: #fff;
-            font-size: 16px;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #ff3333;
-        }
-
-        select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            border-radius: 8px;
-            background-color: #1a1a1a;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        /* Botones */
-        button {
-            width: 100%;
-            background-color: #ff3333;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-bottom: 5px;
-        }
-
-        button:hover {
-            background-color: #cc0000;
-        }
-
-        /* Contenedores Ocultos */
-        #apartado-vip, #apartado-libre, #panel-admin, #login-admin {
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
             display: none;
         }
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #ff3333, #ffaa00);
+            width: 0%;
+            height: 100%;
+            transition: width 0.1s linear;
+        }
+        #injector-status {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+        }
 
-        /* Tarjetas de Contenido */
-        .card-item {
-            background-color: #181818;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            border: 1px solid #262626;
+        /* Estilos de Consola Secreta de Control */
+        .consola-header {
+            background: linear-gradient(90deg, #1d1b4c, #111111);
+            border-radius: 10px;
+            padding: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
+            border: 1px solid #2d2b7c;
+        }
+
+        .consola-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #9290ff;
             text-align: left;
         }
 
-        .card-info h3 {
-            margin: 0;
-            font-size: 16px;
-            color: #fff;
+        .consola-badge {
+            background: #252175;
+            color: #8c89ff;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
         }
 
-        .card-info p {
-            margin: 5px 0 0 0;
-            color: #ff3333;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .btn-elegir {
-            background-color: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .btn-elegir:hover {
-            background-color: #128c7e;
-        }
-
-        .btn-regresar {
-            background-color: #333;
-            margin-top: 15px;
-        }
-
-        /* Chat Global */
-        .chat-section {
-            margin-top: 25px;
-            border-top: 1px solid #222;
-            padding-top: 15px;
-        }
-
-        .chat-box {
-            background-color: #0d0d0d;
-            border: 1px solid #222;
-            height: 120px;
-            border-radius: 8px;
-            padding: 10px;
-            overflow-y: auto;
-            font-size: 13px;
-            text-align: left;
-            margin-bottom: 8px;
-        }
-
-        .chat-msg { margin-bottom: 6px; }
-        .chat-msg b { color: #ff5555; }
-        .chat-msg span { color: #666; font-size: 11px; margin-left: 5px; }
-
-        .chat-input-area {
-            display: flex;
-            gap: 5px;
-        }
-
-        .chat-input-area input { text-align: left; margin: 0; }
-        .chat-input-area button { width: auto; padding: 0 15px; }
-
-        .btn-grupo {
-            display: block;
-            text-align: center;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 13px;
-            margin-top: 12px;
-        }
-
-        /* Configuración Admin */
-        .admin-link {
-            background: none;
+        .consola-btn-top {
+            background: #312e81;
+            color: #c7d2fe;
+            font-size: 11px;
+            padding: 6px 12px;
+            border-radius: 20px;
             border: none;
-            color: #222;
-            font-size: 12px;
             cursor: pointer;
-            margin-top: 20px;
-            text-decoration: underline;
         }
 
-        .admin-box {
-            background-color: #1a0808;
-            border: 1px solid #3a1515;
-            padding: 15px;
+        .planes-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .plan-card {
+            background: #14141e;
+            border: 1px solid #222235;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .plan-card.active {
+            border-color: #3b32ff;
+            box-shadow: 0 0 10px rgba(59, 50, 255, 0.2);
+        }
+
+        .plan-card h4 { margin: 0 0 4px 0; font-size: 13px; color: #fff; }
+        .plan-card p { margin: 0 0 8px 0; font-size: 10px; color: #7a7a9a; }
+        .plan-features { font-size: 10px; color: #4ade80; margin-bottom: 10px; list-style: none; padding: 0; }
+        .plan-features li { margin-bottom: 3px; }
+        .btn-plan-select { background: #fff; color: #000; font-size: 11px; padding: 5px; border-radius: 6px; width: 100%; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat-box {
+            background: #121214;
+            border: 1px solid #1e1e24;
             border-radius: 8px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .stat-label { font-size: 10px; color: #666677; text-transform: uppercase; }
+        .stat-value { font-size: 16px; font-weight: bold; color: #fff; margin-top: 4px; }
+        .stat-sub { font-size: 9px; color: #444455; margin-top: 2px; }
+
+        .panel-block {
+            background: #0f0f12;
+            border: 1px solid #1c1c24;
+            border-radius: 10px;
+            padding: 15px;
             text-align: left;
             margin-bottom: 15px;
         }
 
-        .admin-box label {
-            font-size: 13px;
-            color: #aaa;
-            display: block;
-            margin-bottom: 4px;
-        }
-        
-        .admin-box input {
-            padding: 8px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .btn-eliminar {
-            background-color: #551111;
-            font-size: 11px;
-            padding: 4px 8px;
-            width: auto;
-            display: inline-block;
-            margin-top: 5px;
-            border-radius: 4px;
-        }
-
-        .error {
-            color: #ff3333;
-            font-size: 13px;
-            margin-top: 10px;
-        }
-        
-        .scroller-admin {
-            max-height: 450px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .separador-seccion {
-            border-bottom: 1px dashed #444;
-            margin: 15px 0;
-            padding-bottom: 5px;
-            font-weight: bold;
-            color: #ffaa00;
-            font-size: 14px;
-        }
+        .panel-block-title { font-size: 12px; font-weight: bold; color: #8f8fa3; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .panel-empty-text { color: #444452; font-size: 12px; text-align: center; padding: 20px 0; }
+        .scroller-admin { max-height: 500px; overflow-y: auto; }
+        .btn-eliminar { background-color: #441111; font-size: 11px; padding: 4px 8px; width: auto; display: inline-block; margin-top: 5px; border-radius: 4px; }
     </style>
 </head>
 <body>
@@ -808,19 +385,44 @@
             <p id="error-admin-login" class="error"></p>
         </div>
 
-        <!-- PANTALLA 3: APARTADO VIP (CON KEY NEXUS2026) -->
+        <!-- PANTALLA 3: APARTADO VIP -->
         <div id="apartado-vip">
             <h2>💎 APARTADO VIP 💎</h2>
-            
-            <!-- Lista Dinámica VIP -->
             <div id="lista-productos-vip"></div>
 
-            <!-- CHAT GLOBAL -->
+            <!-- INYECTOR DE CONFIGURACIÓN VIRTUAL -->
+            <div class="injector-section">
+                <h3 style="font-size:14px; margin:0 0 8px 0; color:#ff3333;">⚡ INYECTOR VIRTUAL DE SENSI</h3>
+                <label style="font-size:12px; color:#aaa; display:block; margin-bottom:5px;">Elige el archivo a emular:</label>
+                <select id="injector-select">
+                    <option value="REGEDIT ULTRA">REGEDIT ULTRA INYECT (CABEZA)</option>
+                    <option value="MACRO MOBILE">MACRO MOBILE V2 (MIRA FIJA)</option>
+                    <option value="BYPASS SENSI">BYPASS DE SENSIBILIDAD TOTAL</option>
+                </select>
+                <button onclick="iniciarInyeccion()" style="background-color:#ff3333; margin-top:5px;">INYECTAR ARCHIVO</button>
+                <div class="progress-bar-bg" id="progress-bg">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+                <div id="injector-status">Estado: En espera de comandos...</div>
+            </div>
+
+            <!-- SECCIÓN: NEXUS AI (SÓLO FREE FIRE) -->
+            <div class="ia-section">
+                <h3 style="font-size:14px; margin:0 0 8px 0; color:#8c89ff; display:flex; align-items:center; gap:5px;">🤖 NEXUS AI (Experto Free Fire)</h3>
+                <div class="ia-box" id="ia-box">
+                    <div style="color:#8c89ff;"><b>NEXUS_AI:</b> ¡Hola, crack! Soy tu asistente de Free Fire. Pídeme configuraciones, sensis, trucos para levantar mira o consejos de armas. 🎯</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="ia-input" placeholder="Pregúntale a la IA sobre FF...">
+                    <button onclick="preguntarIA()" style="background-color:#3b32ff;">Preguntar</button>
+                </div>
+            </div>
+
+            <!-- CHAT GLOBAL CON BOTS ACTIVOS -->
             <div class="chat-section">
                 <h3 style="font-size:15px; text-align:left; margin-bottom:8px;">💬 Chat de la Comunidad</h3>
                 <div class="chat-box" id="chat-box">
                     <div class="chat-msg"><b>Admin_Nexus:</b> Bienvenidos al chat VIP, dejen sus pedidos. <span>12:00</span></div>
-                    <div class="chat-msg"><b>User_VIP:</b> El aibot cabeza pega todo rojo directo 🎯 <span>12:02</span></div>
                 </div>
                 <div class="chat-input-area">
                     <input type="text" id="chat-input" placeholder="Escribe algo...">
@@ -833,217 +435,93 @@
             <button onclick="regresarAlInicio()" class="btn-regresar">Volver al Inicio</button>
         </div>
 
-        <!-- PANTALLA 4: APARTADO LIBRE (SIN KEY) -->
+        <!-- PANTALLA 4: APARTADO LIBRE -->
         <div id="apartado-libre">
             <h2>📢 CONTENIDO GRATUITO</h2>
             <p style="color:#aaa; font-size:13px; margin-bottom:15px;">Disfruta de estas configuraciones públicas:</p>
-            
-            <!-- Lista Dinámica Gratuita -->
             <div id="lista-productos-libre"></div>
 
             <a href="https://wa.me/18295225281?text=hola%20Nexus%20quiero%20comprar%20el%20pase%20VIP" target="_blank" class="btn-grupo" style="background: linear-gradient(45deg, #ff3333, #aa0000);">🔥 ¡Adquirir Acceso VIP Completo!</a>
-
             <button onclick="regresarAlInicio()" class="btn-regresar">Volver al Inicio</button>
         </div>
 
-        <!-- PANTALLA 5: PANEL DE CONTROL GENERAL (ADMIN) -->
+        <!-- PANTALLA 5: CONSOLA SECRETA DE CONTROL GENERAL (ADMIN) -->
         <div id="panel-admin">
-            <h2>🛠️ PANEL CONTROL (NEXUS)</h2>
-            
+            <div class="consola-header">
+                <div class="consola-title">Consola Secreta de Control <span class="consola-badge">ADMIN</span></div>
+                <button class="consola-btn-top" onclick="renderizarTodo(); cargarHerramientasAdmin();">🔄 Actualizar</button>
+            </div>
+
             <div class="scroller-admin">
-                <!-- SECCIÓN CLAVE VIP -->
-                <div class="admin-box">
-                    <p style="margin: 0 0 10px 0; font-size: 14px; color: #ff5555; font-weight: bold;">🔑 Clave del Apartado VIP:</p>
-                    <input type="text" id="nueva-key-web">
-                    <button onclick="guardarNuevaKey()" style="background-color:#2a5298;">Actualizar Clave VIP</button>
+                <div class="planes-row">
+                    <div class="plan-card active">
+                        <h4>Plan Gratuito</h4>
+                        <p>Ideal para visitas públicas.</p>
+                        <ul class="plan-features">
+                            <li>✔ Motor Sensi Base</li>
+                            <li>✔ Acceso Libre</li>
+                        </ul>
+                        <button class="btn-plan-select">Activo</button>
+                    </div>
+                    <div class="plan-card">
+                        <h4>Plan Ultra VIP</h4>
+                        <p>Máxima potencia de tiro.</p>
+                        <ul class="plan-features" style="color:#a78bfa;">
+                            <li>✔ Motor AIBOT Pro</li>
+                            <li>✔ Cambios manuales</li>
+                        </ul>
+                        <button class="btn-plan-select" style="background:#252175; color:#c7d2fe; border:none;">Modo VIP</button>
+                    </div>
                 </div>
 
-                <!-- SECCIÓN CONTROL VIP -->
-                <div class="admin-box">
-                    <div class="separador-seccion">💎 GESTIONAR APARTADO VIP</div>
-                    
-                    <p style="margin: 0 0 10px 0; font-size: 13px; color: #ffaa00;">Precios de Productos VIP actuales:</p>
-                    <div id="inputs-precios-vip"></div>
-                    <button onclick="actualizarPreciosVIP()" style="background-color:#25d366; margin-bottom:15px;">Guardar Cambios de Precio</button>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Usuarios VIP</div>
+                        <div class="stat-value" id="stat-vip-count">5 Items</div>
+                        <div class="stat-sub">Productos activos</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">En Línea Ahora</div>
+                        <div class="stat-value" style="color:#22c55e;">● Online</div>
+                        <div class="stat-sub">Consola vinculada</div>
+                    </div>
+                </div>
 
-                    <p style="margin: 0 0 5px 0; font-size: 13px; color: #ffaa00;">Agregar más cosas a VIP:</p>
-                    <label>Nombre:</label>
+                <!-- CAMBIO CENTRALIZADO DE TODAS LAS CONTRASEÑAS -->
+                <div class="panel-block" style="border: 1px solid #ff3333; background: #160d0d;">
+                    <div class="panel-block-title" style="color: #ff5555;">🔐 GESTIÓN TOTAL DE CONTRASEÑAS</div>
+                    
+                    <label style="font-size: 11px; color: #aaa;">Nueva Contraseña del Administrador:</label>
+                    <input type="text" id="nueva-pass-admin-input" placeholder="Ej: NUEVOPASS123">
+                    <button onclick="guardarNuevaPassAdmin()" style="background-color:#cc0000; margin-bottom:15px; font-size:13px;">Actualizar Acceso Admin</button>
+                    
+                    <label style="font-size: 11px; color: #aaa;">Clave VIP Principal del Sistema:</label>
+                    <input type="text" id="nueva-key-web" placeholder="Ej: NEXUS2026">
+                    <button onclick="guardarNuevaKey()" style="background-color:#2a5298; font-size:13px;">Actualizar Clave VIP</button>
+                </div>
+
+                <!-- GENERADOR DE PASES TEMPORALES (KEYS EXTRA) -->
+                <div class="panel-block">
+                    <div class="panel-block-title">🎟️ GENERADOR DE KEYS VIRTUALES</div>
+                    <button onclick="generarKeyTemporal()" style="background-color:#7c3aed; margin-bottom:10px;">Generar Key Temporal Aleatoria</button>
+                    <div style="font-size:12px; color:#aaa; margin-bottom:5px;">Keys adicionales válidas en el sistema:</div>
+                    <div id="lista-keys-adicionales" style="font-size:13px; color:#00ffaa; font-family:monospace; background:#000; padding:8px; border-radius:4px; max-height:80px; overflow-y:auto; height:50px;">NEXUS2026</div>
+                </div>
+
+                <div class="panel-block">
+                    <div class="panel-block-title">💎 CONFIGURAR PRECIOS VIP</div>
+                    <div id="inputs-precios-vip"></div>
+                    <button onclick="actualizarPreciosVIP()" style="background-color:#25d366; margin-top:10px;">Guardar Cambios de Precio</button>
+                </div>
+
+                <div class="panel-block">
+                    <div class="panel-block-title">➕ AÑADIR NUEVO ITEM VIP</div>
                     <input type="text" id="nuevo-vip-nombre" placeholder="Ej: Regedit Extremo 2026">
-                    <label>Precio / Nota:</label>
                     <input type="text" id="nuevo-vip-precio" placeholder="Ej: 10 Dólares">
                     <button onclick="crearItemAdmin('vip')" style="background-color:#ff3333;">Añadir al Menú VIP</button>
                 </div>
 
-                <!-- SECCIÓN CONTROL APARTADO LIBRE -->
-                <div class="admin-box">
-                    <div class="separador-seccion">🔓 GESTIONAR CONTENIDO GRATIS</div>
-                    
-                    <p style="margin: 0 0 10px 0; font-size: 13px; color: #00ffaa;">Agregar a la sección Pública (Sensibilidad, HUD, etc):</p>
-                    
-                    <label>Tipo de Contenido:</label>
+                <div class="panel-block">
+                    <div class="panel-block-title">🔓 GESTIONAR CONTENIDO GRATIS</div>
                     <select id="nuevo-libre-tipo">
-                        <option value="🎯 Sensibilidad">🎯 Sensibilidad</option>
-                        <option value="📱 Configuración HUD">📱 Configuración HUD</option>
-                        <option value="🎁 Regalo Gratis">🎁 Regalo Gratis</option>
-                        <option value="📦 Contenido Manual">📦 Otro Manual</option>
-                    </select>
-
-                    <label>Título / Nombre:</label>
-                    <input type="text" id="nuevo-libre-nombre" placeholder="Ej: Sensi Todo Rojo Xiaomi">
-                    
-                    <label>Detalles / Valores:</label>
-                    <input type="text" id="nuevo-libre-detalle" placeholder="Ej: General 98%, Botón 45%">
-                    
-                    <button onclick="crearItemAdmin('libre')" style="background-color:#25d366;">Publicar en sección Gratis</button>
-
-                    <div style="margin-top:15px;">
-                        <p style="font-size:12px; color:#aaa; margin-bottom:5px;">Elementos actuales (Para borrar):</p>
-                        <div id="lista-borrado-libre"></div>
-                    </div>
-                </div>
-            </div>
-
-            <button onclick="cerrarPanelAdmin()" style="background:#333; margin-top:15px;">Cerrar Sesión Admin</button>
-        </div>
-
-    </div>
-
-    <script>
-        // --- BASE DE DATOS INICIAL ---
-        let KEY_CLIENTE = "NEXUS2026"; 
-        const KEY_ADMIN = "NEXUSADMIN"; 
-
-        // Lista Inicial VIP
-        let productosVIP = [
-            { id: 0, nombre: "Modificaciones VIP", precio: "5 Dólares" },
-            { id: 1, nombre: "Panel VIP", precio: "3 Dólares" },
-            { id: 2, nombre: "Drip Client", precio: "7 Dólares" },
-            { id: 3, nombre: "AIBOT PECHO", precio: "3 Dólares" },
-            { id: 4, nombre: "AIBOT CABEZA", precio: "3 Dólares" }
-        ];
-
-        // Lista Inicial Gratis / Libre
-        let contenidoLibre = [
-            { id: 0, tipo: "🎯 Sensibilidad", nombre: "Sensi Base Android/iOS", detalle: "General: 95% | Mira de Punto Rojo: 100% | Botón: 51%" },
-            { id: 1, tipo: "📱 Configuración HUD", nombre: "HUD 3 Dedos Estándar", detalle: "Botón de disparo Izquierdo arriba (Tamaño: 60%)" }
-        ];
-
-        window.onload = function() {
-            renderizarTodo();
-        };
-
-        function renderizarTodo() {
-            renderizarVIP();
-            renderizarLibre();
-        }
-
-        // Renderizar Vista Cliente VIP
-        function renderizarVIP() {
-            const contenedor = document.getElementById('lista-productos-vip');
-            contenedor.innerHTML = "";
-            productosVIP.forEach(prod => {
-                contenedor.innerHTML += `
-                    <div class="card-item">
-                        <div class="card-info">
-                            <h3>${prod.nombre}</h3>
-                            <p>${prod.precio}</p>
-                        </div>
-                        <a href="https://wa.me/18295225281?text=hola%20Nexus%20quiero%20comprar%20${encodeURIComponent(prod.nombre)}" target="_blank" class="btn-elegir">Elegir</a>
-                    </div>
-                `;
-            });
-        }
-
-        // Renderizar Vista Cliente Libre
-        function renderizarLibre() {
-            const contenedor = document.getElementById('lista-productos-libre');
-            contenedor.innerHTML = "";
-            contenidoLibre.forEach(item => {
-                contenedor.innerHTML += `
-                    <div class="card-item" style="border-left: 3px solid #2a5298;">
-                        <div class="card-info">
-                            <span style="font-size:11px; background:#222; padding:2px 6px; border-radius:4px; color:#00ffaa;">${item.tipo}</span>
-                            <h3 style="margin-top:5px;">${item.nombre}</h3>
-                            <p style="color:#ccc; font-weight:normal; font-size:13px;">${item.detalle}</p>
-                        </div>
-                        <a href="https://wa.me/18295225281?text=hola%20Nexus%20vi%20tu%20configuracion%20gratis%20de%20${encodeURIComponent(item.nombre)}" target="_blank" class="btn-elegir" style="background-color:#2a5298;">Reclamar</a>
-                    </div>
-                `;
-            });
-        }
-
-        // Generar herramientas en el menú de administrador
-        function cargarHerramientasAdmin() {
-            // Inputs de precio VIP
-            const contenedorInputs = document.getElementById('inputs-precios-vip');
-            contenedorInputs.innerHTML = "";
-            productosVIP.forEach(prod => {
-                contenedorInputs.innerHTML += `
-                    <label style="font-size:12px;">${prod.nombre}</label>
-                    <input type="text" id="edit-vip-precio-${prod.id}" value="${prod.precio}">
-                    <button onclick="eliminarItem('vip', ${prod.id})" class="btn-eliminar">Eliminar item</button>
-                    <div style="margin-bottom:10px;"></div>
-                `;
-            });
-
-            // Lista de elementos libres para borrar
-            const contenedorBorradoLibre = document.getElementById('lista-borrado-libre');
-            contenedorBorradoLibre.innerHTML = "";
-            contenidoLibre.forEach(item => {
-                contenedorBorradoLibre.innerHTML += `
-                    <div style="font-size:12px; color:#ccc; margin-bottom:5px; background:#2a0a0a; padding:5px; border-radius:4px;">
-                        [${item.tipo}] ${item.nombre} 
-                        <br><button onclick="eliminarItem('libre', ${item.id})" class="btn-eliminar" style="background-color:#990000; padding:2px 5px;">Borrar</button>
-                    </div>
-                `;
-            });
-        }
-
-        // Navegación de Ventanas
-        function entrarApartadoLibre() {
-            document.getElementById('pantalla-key').style.display = 'none';
-            document.getElementById('apartado-libre').style.display = 'block';
-        }
-
-        function verificarKey() {
-            const entrada = document.getElementById('input-key').value.trim();
-            if (entrada === KEY_CLIENTE) {
-                document.getElementById('pantalla-key').style.display = 'none';
-                document.getElementById('apartado-vip').style.display = 'block';
-            } else {
-                document.getElementById('mensaje-error').innerText = "Key no válida o vencida.";
-            }
-        }
-
-        function regresarAlInicio() {
-            document.getElementById('apartado-vip').style.display = 'none';
-            document.getElementById('apartado-libre').style.display = 'none';
-            document.getElementById('pantalla-key').style.display = 'block';
-            document.getElementById('input-key').value = "";
-            document.getElementById('mensaje-error').innerText = "";
-        }
-
-        // Control Panel Admin
-        function irALoginAdmin() {
-            document.getElementById('pantalla-key').style.display = 'none';
-            document.getElementById('login-admin').style.display = 'block';
-        }
-        function cancelarAdmin() {
-            document.getElementById('login-admin').style.display = 'none';
-            document.getElementById('pantalla-key').style.display = 'block';
-        }
-        
-        function verificarAdmin() {
-            const p = document.getElementById('pass-admin').value.trim();
-            if(p === KEY_ADMIN) {
-                document.getElementById('login-admin').style.display = 'none';
-                document.getElementById('panel-admin').style.display = 'block';
-                document.getElementById('nueva-key-web').value = KEY_CLIENTE;
-                cargarHerramientasAdmin();
-            } else {
-                document.getElementById('error-admin-login').innerText = "Acceso Incorrecto.";
-            }
-        }
-
-        function guardarNuevaKey() {
-            const n = document.getElementById
+                        <option value="🎯 Sensibilidad">🎯 Sensibil
